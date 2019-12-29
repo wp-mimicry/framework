@@ -2,7 +2,7 @@
 /**
  * ProvidersHandler
  *
- * Run the providers.
+ * Run the provider classes.
  *
  * @package             Mimicry
  * @subpackage          Mimicry\Foundation;
