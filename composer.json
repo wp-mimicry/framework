@@ -1,0 +1,28 @@
+{
+    "name": "mimicry/framework",
+    "description": "Service based WordPress theme framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephan Nijman",
+            "email": "vanaf1979@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Mimicry\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/var-dumper": "^4.3",
+        "illuminate/container": "^6.0",
+        "illuminate/config": "^6.8",
+        "symfony/console": "^5.0",
+        "symfony/lock": "^5.0"
+    },
+    "require-dev": {}
+}
