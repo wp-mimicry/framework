@@ -6,17 +6,50 @@ use Mimicry\Foundation\Service;
 
 class ServicesHandler {
 
-    private $app = null;
+    /**
+     * app.
+     *
+     * @var App Service container.
+     *
+     * @access protected
+     */
+    protected $app = null;
 
-    private $services = [];
+    /**
+     * services.
+     *
+     * @var array The services.
+     *
+     * @access protected
+     */
+    protected $services = [];
 
 
+    /**
+     * __construct.
+     *
+     * Initialize the class.
+     *
+     * @param App $app Service container.
+     *
+     * @access public
+     */
     public function __construct(App $app)
     {
         $this->app = $app;
     }
 
 
+    /**
+     * init.
+     *
+     * Make instances of the service classes.
+     *
+     * @param array $services List of services.
+     *
+     * @access public
+     * @return void
+     */
     public function init(array $services): void
     {
         $services = $this->filterServices($services);
@@ -36,13 +69,33 @@ class ServicesHandler {
     }
 
 
+    /**
+     * filterServices.
+     *
+     * Apply the mimicry_service_array filter on the services array.
+     *
+     * @param array $services List of services.
+     *
+     * @access private
+     * @return array
+     */
     private function filterServices(array $services): array
     {
         return \apply_filters('mimicry_service_array', $services);
     }
 
 
-    private function hookService(Service $service)
+    /**
+     * hookService.
+     *
+     * Apply the mimicry_handle_service action on individual services.
+     *
+     * @param Service $service service instance.
+     *
+     * @access private
+     * @return void
+     */
+    private function hookService(Service $service): void
     {
         \do_action('mimicry_handle_service', $service);
     }

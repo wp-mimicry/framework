@@ -9,7 +9,8 @@
 
 namespace Mimicry;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+if (file_exists(__DIR__ . '/../vendor/autoload.php'))
+    require_once __DIR__ . '/../vendor/autoload.php';
 
 use \Exception;
 use \Mimicry\Foundation\App;
@@ -21,7 +22,7 @@ use \Mimicry\Foundation\App;
  */
 final class Mimicry {
 
-    static $MymicryLoaded = false;
+    static $MimicryLoaded = false;
 
     private $app = null;
 
@@ -39,7 +40,7 @@ final class Mimicry {
      */
     public function __construct()
     {
-        if (static::$MymicryLoaded)
+        if (static::$MimicryLoaded)
             throw new \Exception('Mimicry is already loaded');
 
         $this->app = new App();
@@ -50,13 +51,13 @@ final class Mimicry {
     {
         ob_start();
 
+        $this->app->instance('Mimicry\Mimicry', $this);
+
         $this->setConstants($config);
 
         $this->initializeKernel();
 
-        $this->app->instance('Mimicry\Mimicry', $this);
-
-        static::$MymicryLoaded = true;
+        static::$MimicryLoaded = true;
     }
 
 

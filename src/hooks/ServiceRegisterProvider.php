@@ -4,7 +4,7 @@ namespace Mimicry\Hooks;
 
 use Mimicry\Foundation\Provider;
 
-final class RegisterProvider extends Provider {
+final class ServiceRegisterProvider extends Provider {
 
     public function register()
     {

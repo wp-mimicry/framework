@@ -24,20 +24,38 @@ use Illuminate\Config\Repository;
  */
 final class Kernel {
 
-    private $app = null;
+    /**
+     * app.
+     *
+     * @var Container Service container.
+     *
+     * @access private
+     */
+    protected $app = null;
 
-    private $coreProviders = [
+
+    /**
+     * coreProviders.
+     *
+     * @var Array Core providers.
+     *
+     * @access protected
+     */
+    protected $coreProviders = [
         'tagsProvider' => \Mimicry\Tags\tagsProvider::class,
         'ServiceOptionalProvider' => \Mimicry\Services\ServiceOptionalProvider::class,
         'ServiceInitializerProvider' => \Mimicry\Services\ServiceInitializerProvider::class,
-        'RegisterProvider' => \Mimicry\Hooks\RegisterProvider::class
+        'ServiceRegisterProvider' => \Mimicry\Hooks\ServiceRegisterProvider::class
     ];
 
 
     /**
-     * Kernel constructor.
+     * __construct.
      *
-     * @param App $app
+     * Initialize the class.
+     *
+     * @param App $app Service container.
+     * @access public
      */
     public function __construct(App $app)
     {
@@ -47,7 +65,12 @@ final class Kernel {
 
 
     /**
+     * init.
      *
+     * Initialize the Kernel.
+     *
+     * @access public
+     * @return void
      */
     public function init(): void
     {
@@ -60,7 +83,12 @@ final class Kernel {
 
 
     /**
+     * loadCoreConfig.
      *
+     * Load the main configuration file.
+     *
+     * @access private
+     * @return void
      */
     private function loadCoreConfig(): void
     {
@@ -74,7 +102,13 @@ final class Kernel {
 
 
     /**
+     * handleProviders.
+     *
+     * Load the providers into the provider handler.
+     *
      * @param Repository $config
+     * @access public
+     * @return void
      */
     public function handleProviders(Repository $config): void
     {
@@ -90,7 +124,13 @@ final class Kernel {
 
 
     /**
+     * handleServices.
+     *
+     * Load the services into the service handler.
+     *
      * @param Repository $config
+     * @access public
+     * @return void
      */
     public function handleServices(Repository $config): void
     {

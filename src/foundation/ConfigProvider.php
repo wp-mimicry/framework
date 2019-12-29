@@ -2,16 +2,32 @@
 namespace Mimicry\Foundation;
 
 use Illuminate\Config\Repository;
-use Mimicry\Foundation\App;
+use Mimicry\Foundation\Provider;
 
-class ConfigProvider {
+class ConfigProvider extends Provider {
 
+
+    /**
+     * __construct.
+     *
+     * Initialize the class.
+     *
+     * @access public
+     */
     public function __construct(App $app)
     {
         $this->app = $app;
     }
 
 
+    /**
+     * register.
+     *
+     * Register the config repository with the service container.
+     *
+     * @access public
+     * @return void
+     */
     public function register(): void
     {
         $this->app->singleton('Illuminate\Config\Repository', function () {
@@ -29,7 +45,15 @@ class ConfigProvider {
     }
 
 
-    private function getConfigFilepath()
+    /**
+     * getConfigFilepath.
+     *
+     * get the full path to the app.php config file.
+     *
+     * @access private
+     * @return string
+     */
+    private function getConfigFilepath(): string
     {
         $configfile = \theme_path() . MIMICRY_CONFIG_DIR_PATH . DIRECTORY_SEPARATOR . MIMICRY_CONFIG_FILE;
 

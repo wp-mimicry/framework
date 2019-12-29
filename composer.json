@@ -2,13 +2,7 @@
     "name": "mimicry/framework",
     "description": "Service based WordPress theme framework",
     "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Stephan Nijman",
-            "email": "vanaf1979@gmail.com"
-        }
-    ],
+    "license": "GNU",
     "autoload": {
         "files": [
             "src/helpers.php"
