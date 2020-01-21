@@ -1,8 +1,19 @@
 {
     "name": "mimicry/framework",
     "description": "Service based WordPress theme framework",
-    "type": "project",
+    "keywords": ["wordpress", "theme", "framework", "mimicry"],
+    "homepage": "https://github.com/wp-mimicry/mimicry-framework",
     "license": "GNU",
+    "authors": [
+        {
+            "name": "Stephan Nijman",
+            "email": "vanaf1979@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/wp-mimicry/mimicry-framework/issues",
+        "source": "https://github.com/wp-mimicry/mimicry-framework"
+    },
     "autoload": {
         "files": [
             "src/helpers.php"

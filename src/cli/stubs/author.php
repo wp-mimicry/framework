@@ -1,3 +1,0 @@
-<?php
-// Author.php
-?>
