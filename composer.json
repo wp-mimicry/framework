@@ -3,7 +3,7 @@
     "description": "Service based WordPress theme framework",
     "keywords": ["wordpress", "theme", "framework", "mimicry"],
     "homepage": "https://github.com/wp-mimicry/mimicry-framework",
-    "license": "GNU",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Stephan Nijman",
