@@ -1,40 +1,29 @@
 <?php
-/**
- * ServicesHandler
- *
- * Run services.
- *
- * @package             Mimicry
- * @subpackage          Mimicry\Foundation;
- * @author              Stephan Nijman <vanaf1979@gmail.com>
- * @copyright           2020 Stephan Nijman
- * @license             GPL-2.0-or-later
- * @version             1.0.0
- */
 namespace Mimicry\Foundation;
 
 use Exception;
 use Mimicry\Foundation\Service;
 
-class ServicesHandler {
+/**
+ * Provider
+ *
+ * @package             Mimicry\Foundation
+ * @author              Stephan Nijman <vanaf1979@gmail.com>
+ * @license             GPL-2.0-or-later
+ */
+final class ServicesHandler {
 
     /**
-     * app.
-     *
-     * @var App Service container.
-     *
-     * @access protected
+     * @var Container $app Service container instance.
+     * @access private
      */
-    protected $app = null;
+    private $app = null;
 
     /**
-     * services.
-     *
-     * @var array The services.
-     *
-     * @access protected
+     * @var array $services An array of services.
+     * @access private
      */
-    protected $services = [];
+    private $services = [];
 
 
     /**
@@ -60,9 +49,8 @@ class ServicesHandler {
      * @param array $services List of services.
      *
      * @access public
-     * @return void
      */
-    public function init(array $services): void
+    public function init(array $services)
     {
         $services = $this->filterServices($services);
 
@@ -105,9 +93,8 @@ class ServicesHandler {
      * @param Service $service service instance.
      *
      * @access private
-     * @return void
      */
-    private function hookService(Service $service): void
+    private function hookService(Service $service)
     {
         \do_action('mimicry_handle_service', $service);
     }

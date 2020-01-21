@@ -1,29 +1,23 @@
 <?php
-/**
- * ConfigProvider
- *
- * Load configuration files.
- *
- * @package             Mimicry
- * @subpackage          Mimicry\Foundation;
- * @author              Stephan Nijman <vanaf1979@gmail.com>
- * @copyright           2020 Stephan Nijman
- * @license             GPL-2.0-or-later
- * @version             1.0.0
- */
 namespace Mimicry\Foundation;
 
 use Illuminate\Config\Repository;
-use Mimicry\Foundation\Provider;
 
+/**
+ * ConfigProvider
+ *
+ * @package             Mimicry\Foundation
+ * @author              Stephan Nijman <vanaf1979@gmail.com>
+ * @license             GPL-2.0-or-later
+ */
 class ConfigProvider extends Provider {
-
 
     /**
      * __construct.
      *
      * Initialize the class.
      *
+     * @param App $app Service container.
      * @access public
      */
     public function __construct(App $app)
@@ -38,14 +32,14 @@ class ConfigProvider extends Provider {
      * Register the config repository with the service container.
      *
      * @access public
-     * @return void
      */
-    public function register(): void
+    public function register()
     {
         $this->app->singleton('Illuminate\Config\Repository', function () {
+
             $config = new Repository(require $this->getConfigFilepath());
 
-            if (is_array($files = $config->get('config_files'))) {
+            if (\is_array($files = $config->get('config_files'))) {
                 foreach ($files as $key => $file) {
                     $data = include(\theme_path() . MIMICRY_CONFIG_DIR_PATH . DIRECTORY_SEPARATOR . $file);
                     $config->set($key, $data);
@@ -60,7 +54,7 @@ class ConfigProvider extends Provider {
     /**
      * getConfigFilepath.
      *
-     * get the full path to the app.php config file.
+     * Get the full path to the app.php config file.
      *
      * @access private
      * @return string

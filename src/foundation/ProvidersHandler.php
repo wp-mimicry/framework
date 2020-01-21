@@ -1,40 +1,28 @@
 <?php
-/**
- * ProvidersHandler
- *
- * Run the provider classes.
- *
- * @package             Mimicry
- * @subpackage          Mimicry\Foundation;
- * @author              Stephan Nijman <vanaf1979@gmail.com>
- * @copyright           2020 Stephan Nijman
- * @license             GPL-2.0-or-later
- * @version             1.0.0
- */
-
 namespace Mimicry\Foundation;
 
 use Exception;
 
+/**
+ * ProvidersHandler
+ *
+ * @package             Mimicry\Foundation
+ * @author              Stephan Nijman <vanaf1979@gmail.com>
+ * @license             GPL-2.0-or-later
+ */
 class ProvidersHandler {
 
     /**
-     * app.
-     *
-     * @var App Service container.
-     *
+     * @var Container $app Service container instance.
      * @access private
      */
     private $app = null;
 
     /**
-     * $providers.
-     *
-     * @var array The providers.
-     *
+     * @var array $providers An array of provider classes.
      * @access private
      */
-    private $providers = [];
+    private $providers;
 
 
     /**
@@ -43,6 +31,7 @@ class ProvidersHandler {
      * Initialize the class.
      *
      * @param App $app Service container.
+     *
      * @access public
      */
     public function __construct(App $app)
@@ -56,10 +45,12 @@ class ProvidersHandler {
      *
      * Initialize the handler.
      *
+     * @param array $providers An array of provider classes.
+     *
      * @access public
      * @return void
      */
-    public function init(array $providers = []): void
+    public function init(array $providers = [])
     {
         $this->makeProviders($providers);
 
@@ -77,10 +68,10 @@ class ProvidersHandler {
      * Run through the providers and mace concrete instances.
      *
      * @param array $providers list of providers
+     *
      * @access public
-     * @return void
      */
-    private function makeProviders(Array $providers): void
+    private function makeProviders(Array $providers)
     {
         foreach ($providers as $name => $abstract) {
             try {
@@ -103,7 +94,7 @@ class ProvidersHandler {
      * @access private
      * @return void
      */
-    private function registerProviders(): void
+    private function registerProviders()
     {
         $this->callMethodOnProviders('register');
     }
@@ -115,9 +106,8 @@ class ProvidersHandler {
      * Call the boot method on the providers.
      *
      * @access private
-     * @return void
      */
-    private function bootProviders(): void
+    private function bootProviders()
     {
         $this->callMethodOnProviders('boot');
     }
@@ -129,9 +119,8 @@ class ProvidersHandler {
      * Register with the shutdown WordPress hook.
      *
      * @access private
-     * @return void
      */
-    private function registerShutdownHook(): void
+    private function registerShutdownHook()
     {
         if (\count($this->providers) > 0) {
             \add_action('shutdown', array($this, 'shutdownProviders'));
@@ -145,9 +134,8 @@ class ProvidersHandler {
      * Call the shutdown method on the providers.
      *
      * @access public
-     * @return void
      */
-    public function shutdownProviders(): void
+    public function shutdownProviders()
     {
         $this->callMethodOnProviders('shutdown');
     }
@@ -159,10 +147,10 @@ class ProvidersHandler {
      * Call the provided method on all providers.
      *
      * @param string $method method to call.
+     *
      * @access private
-     * @return void
      */
-    private function callMethodOnProviders(string $method): void
+    private function callMethodOnProviders(string $method)
     {
         foreach ($this->providers as $provider) {
             if (\method_exists($provider, $method)) {

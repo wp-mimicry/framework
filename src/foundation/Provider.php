@@ -1,28 +1,17 @@
 <?php
+namespace Mimicry\Foundation;
+
 /**
  * Provider
  *
- * Base service provider.
- *
- * @package             Mimicry
- * @subpackage          Mimicry\Foundation;
+ * @package             Mimicry\Foundation
  * @author              Stephan Nijman <vanaf1979@gmail.com>
- * @copyright           2020 Stephan Nijman
  * @license             GPL-2.0-or-later
- * @version             1.0.0
  */
-
-namespace Mimicry\Foundation;
-
-use Mimicry\Foundation\App;
-
 abstract class Provider {
 
     /**
-     * app.
-     *
-     * @var Container Service container.
-     *
+     * @var Container $app Service container instance.
      * @access private
      */
     protected $app = null;
@@ -31,8 +20,9 @@ abstract class Provider {
     /**
      * __construct.
      *
-     * Initialize this class.
+     * Initialize the class.
      *
+     * @param App $app Service container.
      * @access public
      */
     public function __construct(App $app)
