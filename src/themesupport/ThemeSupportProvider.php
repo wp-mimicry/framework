@@ -10,8 +10,7 @@ class ThemeSupportProvider extends Provider {
     public function boot()
     {
         try {
-            $ThemeSupportHandler = $this->app->make('Mimicry\Themesupport\ThemeSupportHandler');
-            $ThemeSupportHandler->init();
+            ($this->app->make('Mimicry\Themesupport\ThemeSupportHandler'))->init();
         } catch (BindingResolutionException $e) {
             \wp_die($e->getMessage());
         }
