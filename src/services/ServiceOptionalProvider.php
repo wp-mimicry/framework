@@ -1,12 +1,27 @@
 <?php
-
 namespace Mimicry\Services;
 
-class ServiceOptionalProvider {
+use Mimicry\Foundation\Service;
+
+/**
+ * ServiceOptionalProvider
+ *
+ * @package             Mimicry\Services
+ * @author              Stephan Nijman <vanaf1979@gmail.com>
+ * @license             GPL-2.0-or-later
+ */
+final class ServiceOptionalProvider {
 
     protected $neededServices = [];
 
 
+    /**
+     * register.
+     *
+     * Filter the needed services.
+     *
+     * @access public
+     */
     public function boot()
     {
         \add_filter('mimicry_service_array', function ($services) {
@@ -21,7 +36,15 @@ class ServiceOptionalProvider {
     }
 
 
-    private function serviceNneeded($service)
+    /**
+     * serviceNneeded.
+     *
+     * Determine if a service is needed for the current requesst.
+     *
+     * @param Service $service A service instance.
+     * @access public
+     */
+    private function serviceNneeded(Service $service)
     {
         return (\method_exists($service, 'optional') and !$service::optional()) ? false : true;
     }
