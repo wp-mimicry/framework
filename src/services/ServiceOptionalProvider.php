@@ -41,10 +41,10 @@ final class ServiceOptionalProvider {
      *
      * Determine if a service is needed for the current requesst.
      *
-     * @param Service $service A service instance.
+     * @param string $service A service instance.
      * @access public
      */
-    private function serviceNneeded(Service $service)
+    private function serviceNneeded(string $service)
     {
         return (\method_exists($service, 'optional') and !$service::optional()) ? false : true;
     }
